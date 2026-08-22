@@ -1,11 +1,15 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000;
+
+// Serve static files (like index.html) from the root directory
+app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-  res.send('CI/CD Pipeline Running Locally!');
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`App running on port ${port}`);
 });
