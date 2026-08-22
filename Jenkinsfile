@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME    = 'local-app:latest'
+        IMAGE_NAME     = 'local-app:latest'
         CONTAINER_NAME = 'local-app-container'
-        SLACK_CHANNEL  = '#deployments'
+        SLACK_CHANNEL  = 'C0BRVCPUG21' // Channel ID for #all-home-cicd
     }
 
     stages {
@@ -77,6 +77,7 @@ pipeline {
         }
         success {
             slackSend(
+                tokenCredentialId: 'slack-token',
                 channel: "${SLACK_CHANNEL}",
                 color: '#36a64f',
                 message: "SUCCESSFUL: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] finished successfully! URL: ${env.BUILD_URL}"
@@ -84,6 +85,7 @@ pipeline {
         }
         failure {
             slackSend(
+                tokenCredentialId: 'slack-token',
                 channel: "${SLACK_CHANNEL}",
                 color: '#FF0000',
                 message: "FAILED: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] failed! Check logs: ${env.BUILD_URL}"
