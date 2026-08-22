@@ -70,26 +70,22 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            cleanWs()
-        }
-        success {
-            slackSend(
-                tokenCredentialId: 'slack-token',
-                channel: "${SLACK_CHANNEL}",
-                color: '#36a64f',
-                message: "SUCCESSFUL: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] finished successfully! URL: ${env.BUILD_URL}"
-            )
-        }
-        failure {
-            slackSend(
-                tokenCredentialId: 'slack-token',
-                channel: "${SLACK_CHANNEL}",
-                color: '#FF0000',
-                message: "FAILED: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] failed! Check logs: ${env.BUILD_URL}"
-            )
-        }
+post {
+    always {
+        cleanWs()
+    }
+    success {
+        slackSend(
+            channel: "${env.SLACK_CHANNEL}",
+            color: '#36a64f',
+            message: "SUCCESS: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] - (${env.BUILD_URL})"
+        )
+    }
+    failure {
+        slackSend(
+            channel: "${env.SLACK_CHANNEL}",
+            color: '#FF0000',
+            message: "FAILED: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] - (${env.BUILD_URL})"
+        )
     }
 }
