@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechPulse | DevOps Platform</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-badge {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--success);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      width: 100%;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-btn {
+      background-color: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid #334155;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      border-top: 1px solid #334155;
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">⚡ TechPulse Engine</div>
+    <div class="status-badge">● CI/CD Pipeline Active</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Automated Microservice Platform</h1>
+      <p>Continuous Integration & Continuous Deployment pipeline built with Docker, Jenkins, and automated testing.</p>
+      <button class="cta-btn" onclick="triggerAlert()">Check Environment Metrics</button>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>🚀 Docker Engine</h3>
+        <p>Isolated containerization environment running locally on custom bridge networking.</p>
+      </div>
+
+      <div class="card">
+        <h3>🔄 Jenkins Automated</h3>
+        <p>Triggered build steps, static code analysis, and live Slack status notifications.</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 Health & Metrics</h3>
+        <p>Real-time endpoint status monitoring ready for Prometheus and Grafana integration.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Deployed automatically via Jenkins CI/CD Pipeline | Local Port 3000
+  </footer>
+
+  <script>
+    function triggerAlert() {
+      alert("System Status: 100% Operational\nNode Environment: Production\nPort: 3000");
+    }
+  </script>
+
+</body>
+</html>
