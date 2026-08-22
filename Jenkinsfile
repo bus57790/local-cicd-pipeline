@@ -24,7 +24,6 @@ pipeline {
 
         stage('SonarQube Code Analysis') {
             steps {
-                // Requires SonarQube Scanner plugin installed in Jenkins
                 withSonarQubeEnv('SonarQubeServer') {
                     sh '''
                         npx sonar-scanner \
@@ -47,7 +46,6 @@ pipeline {
         stage('Trivy Image Scan') {
             steps {
                 echo 'Scanning Docker image for vulnerabilities...'
-                // Runs Trivy container directly via Docker socket
                 sh """
                     docker run --rm \
                       -v /var/run/docker.sock:/var/run/docker.sock \
@@ -70,22 +68,24 @@ pipeline {
             }
         }
     }
-post {
-    always {
-        cleanWs()
-    }
-    success {
-        slackSend(
-            channel: "${env.SLACK_CHANNEL}",
-            color: '#36a64f',
-            message: "SUCCESS: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] - (${env.BUILD_URL})"
-        )
-    }
-    failure {
-        slackSend(
-            channel: "${env.SLACK_CHANNEL}",
-            color: '#FF0000',
-            message: "FAILED: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] - (${env.BUILD_URL})"
-        )
+
+    post {
+        always {
+            cleanWs()
+        }
+        success {
+            slackSend(
+                channel: "${env.SLACK_CHANNEL}",
+                color: '#36a64f',
+                message: "SUCCESS: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] - (${env.BUILD_URL})"
+            )
+        }
+        failure {
+            slackSend(
+                channel: "${env.SLACK_CHANNEL}",
+                color: '#FF0000',
+                message: "FAILED: Job '${env.JOB_NAME}' [Build #${env.BUILD_NUMBER}] - (${env.BUILD_URL})"
+            )
+        }
     }
 }
